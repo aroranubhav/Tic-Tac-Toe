@@ -4,4 +4,6 @@
     <string name="player_1">Player 1 Name</string>
     <string name="player_2">Player 2 Name</string>
     <string name="_continue">Continue</string>
+    <string name="reset">Reset</string>
+    <string name="play_again">Play Again</string>
 </resources>

@@ -9,10 +9,10 @@
 
     <!-- Player 1 Info -->
     <TextView
-        android:id="@+id/player1Info"
+        android:id="@+id/playerXInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player 1 (X)"
+        tools:text="Player 1 (X)"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +20,10 @@
 
     <!-- Player 2 Info -->
     <TextView
-        android:id="@+id/player2Info"
+        android:id="@+id/playerOInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player 2 (O)"
+        tools:text="Player 2 (O)"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnReset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/player1Info">
+        app:layout_constraintTop_toBottomOf="@id/playerXInfo">
 
         <!-- 9 cells -->
         <TextView
@@ -89,9 +89,9 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="18dp"
         android:text="@string/reset"
         app:cornerRadius="24dp"
-        android:padding="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

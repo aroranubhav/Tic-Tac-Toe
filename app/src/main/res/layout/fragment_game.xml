@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.game.GameFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:padding="24dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Player 1 Info -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/player1Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player 1 (X)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <!-- Player 2 Info -->
+    <TextView
+        android:id="@+id/player2Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player 2 (O)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 3x3 Tic Tac Toe Board -->
+    <GridLayout
+        android:id="@+id/boardGrid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/board_border"
+        android:columnCount="3"
+        android:padding="2dp"
+        android:rowCount="3"
+        app:layout_constraintBottom_toTopOf="@id/btnReset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/player1Info">
+
+        <!-- 9 cells -->
+        <TextView
+            android:id="@+id/cell00"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell01"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell02"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell10"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell11"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell12"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell20"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell21"
+            style="@style/TicTacToeCell" />
+
+        <TextView
+            android:id="@+id/cell22"
+            style="@style/TicTacToeCell" />
+
+    </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReset"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset"
+        app:cornerRadius="24dp"
+        android:padding="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

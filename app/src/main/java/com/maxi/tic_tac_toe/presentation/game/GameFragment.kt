@@ -14,6 +14,8 @@ import com.maxi.tic_tac_toe.databinding.FragmentGameBinding
 import com.maxi.tic_tac_toe.model.GameSetup
 import com.maxi.tic_tac_toe.model.Player
 import com.maxi.tic_tac_toe.presentation.SharedViewModel
+import com.maxi.tic_tac_toe.util.Constants.TIE
+import com.maxi.tic_tac_toe.util.Constants.WINS
 import com.maxi.tic_tac_toe.util.GameState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -82,6 +84,7 @@ class GameFragment : Fragment() {
             }
 
             btnReset.setOnClickListener {
+                viewModel.resetGame()
                 clearUiState()
                 updateGridCellsState(true)
             }
@@ -100,13 +103,10 @@ class GameFragment : Fragment() {
 
     private fun setupActions(view: TextView) {
         view.apply {
-            if (!view.text.isNullOrBlank()) {
-                isEnabled = false
-            }
             setOnClickListener {
                 val position = view.tag as Pair<Int, Int>
-                text =
-                    currentPlayer.identifier //TODO: can the currPlayer identifier be passed within methods or does it have to be a lateinit var
+                text = currentPlayer.identifier
+                isEnabled = false
                 val gameState = viewModel.placeMove(currentPlayer, position.first, position.second)
                 checkGameState(gameState)
             }
@@ -117,16 +117,22 @@ class GameFragment : Fragment() {
         when (gameState) {
             is GameState.Win -> {
                 updateGridCellsState(false)
+                val message = "${currentPlayer.name} (${currentPlayer.identifier}) $WINS!"
+                updateGameStateMessage(message)
             }
 
             is GameState.Tie -> {
                 updateGridCellsState(false)
+                updateGameStateMessage(TIE)
             }
 
             is GameState.Ongoing -> {
                 currentPlayer = gameState.player
             }
 
+            /**
+             * Will not come across this use case in our scenario!
+             */
             is GameState.IllegalMove -> {
                 Snackbar.make(
                     binding.root,
@@ -135,6 +141,15 @@ class GameFragment : Fragment() {
                 ).show()
             }
         }
+    }
+
+    private fun updateGameStateMessage(message: String) {
+        Snackbar
+            .make(
+                binding.root,
+                message,
+                Snackbar.LENGTH_LONG
+            ).show()
     }
 
     private fun clearUiState() {

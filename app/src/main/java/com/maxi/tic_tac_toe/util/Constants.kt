@@ -9,4 +9,6 @@ object Constants {
     const val ALREADY_OCCUPIED_CELL_MOVE = "Invalid move: cell is already occupied."
     const val FORWARD = "forward"
     const val BACKWARD = "backward"
+    const val WINS = "Wins"
+    const val TIE = "It's a tie!"
 }
